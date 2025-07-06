@@ -1,4 +1,4 @@
-// App.js - Updated to use WebSocket hooks
+// App.js - Updated for Cloud Run deployment
 import React, { useState, useEffect, useCallback } from 'react';
 import OrderBook from './components/OrderBook';
 import useOrderBook from './hooks/useOrderBook';
@@ -8,6 +8,9 @@ function App() {
   const [selectedSymbol, setSelectedSymbol] = useState('BTCUSDT');
   const [selectedSymbols, setSelectedSymbols] = useState(['BTCUSDT', 'ETHUSDT', 'ADAUSDT']);
   const [notifications, setNotifications] = useState([]);
+
+  const WS_URL = 'ws://crypto-aggregator-119288192515.europe-west1.run.app:8080/ws';
+  const REST_URL = 'https://crypto-aggregator-119288192515.europe-west1.run.app:8080';
 
   // Configure the order book hook
   const {
@@ -23,8 +26,8 @@ function App() {
     stats,
     reconnect
   } = useOrderBook(
-    'ws://localhost:8080/ws',  // WebSocket URL
-    'http://localhost:8080',   // REST API URL
+    WS_URL,                    // WebSocket URL
+    REST_URL,                  // REST API URL
     selectedSymbols,           // Initial symbols to subscribe to
     {
       maxDepth: 20,
