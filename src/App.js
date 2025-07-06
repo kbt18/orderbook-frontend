@@ -9,7 +9,7 @@ function App() {
   const [selectedSymbols, setSelectedSymbols] = useState(['BTCUSDT', 'ETHUSDT', 'ADAUSDT']);
   const [notifications, setNotifications] = useState([]);
 
-  const WS_URL = 'ws://crypto-aggregator-119288192515.europe-west1.run.app:8080/ws';
+  const WS_URL = 'wss://crypto-aggregator-119288192515.europe-west1.run.app:8080/ws';
   const REST_URL = 'https://crypto-aggregator-119288192515.europe-west1.run.app:8080';
 
   // Configure the order book hook
